@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:zxing="clr-namespace:ZXing.Net.Maui.Controls;assembly=ZXing.Net.MAUI.Controls"
+    Title="Add Friend"
+    NavigationPage.BackButtonTitle="Back"
+    x:Class="Frontend.AddFriendPage"
+>
+    <Grid RowDefinitions="auto,*">
+        <StackLayout
+            Margin="0,20,0,0"
+            Spacing="15"
+            Orientation="Horizontal"
+            HorizontalOptions="Center"
+        >
+            <Label VerticalTextAlignment="Center" Text="Show QR" />
+
+            <Switch x:Name="Switcher" Toggled="SwitcherToggled" />
+
+            <Label VerticalTextAlignment="Center" Text="Scan QR" />
+        </StackLayout>
+
+        <ContentView Grid.Row="1" IsVisible="False">
+            <zxing:BarcodeGeneratorView
+                x:Name="QRCode"
+                HorizontalOptions="FillAndExpand"
+                HeightRequest="{Binding Path=Width, Source={x:RelativeSource Self}}"
+                Format="QrCode"
+                Margin="20"
+            />
+            <ContentView.Triggers>
+                <DataTrigger
+                    TargetType="ContentView"
+                    Binding="{Binding IsToggled, Source={x:Reference Switcher}}"
+                    Value="False"
+                >
+                    <Setter Property="IsVisible" Value="True" />
+                </DataTrigger>
+            </ContentView.Triggers>
+        </ContentView>
+
+        <!-- Comment this control when using iOS simulator. Othrewise, the app will crash!-->
+        <ContentView
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            Margin="20"
+            Grid.Row="1"
+            x:Name="BarcodeContentView"
+            IsVisible="{Binding IsToggled, Source={x:Reference Switcher}}"
+        />
+    </Grid>
+</ContentPage>

@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Frontend.ClosenessPage"
+    NavigationPage.BackButtonTitle="Back"
+    Title="Closeness"
+>
+    <ContentPage.Resources>
+        <Style TargetType="Grid">
+            <Setter Property="ColumnDefinitions" Value="*,auto,*" />
+            <Setter Property="Margin" Value="0,20,0,0" />
+        </Style>
+    </ContentPage.Resources>
+
+    <StackLayout Orientation="Vertical">
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="VerticalTextAlignment" Value="Center" />
+                </Style>
+            </Grid.Resources>
+            <Label
+                Grid.Column="0"
+                HorizontalTextAlignment="End"
+                Margin="0,0,10,0"
+                Text="Acquaintance"
+                x:Name="AcquaintanceLabel"
+                IsEnabled="true"
+            />
+
+            <Switch
+                Toggled="AcquaintanceComradeSwitcherToggled"
+                Grid.Column="1"
+                x:Name="AcquaintanceComradeSwitcher"
+            />
+
+            <Label
+                Grid.Column="2"
+                Margin="10,0,0,0"
+                Text="Comrade"
+                x:Name="ComradeLabel"
+                IsEnabled="true"
+            />
+        </Grid>
+
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="VerticalTextAlignment" Value="Center" />
+                    <Setter Property="Opacity" Value="0.3" />
+                    <Style.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{Binding IsToggled, Source={x:Reference AcquaintanceComradeSwitcher}}"
+                            Value="True"
+                        >
+                            <Setter Property="Opacity" Value="1" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+
+            <Label
+                Grid.Column="0"
+                HorizontalTextAlignment="End"
+                Margin="0,0,10,0"
+                Text="Friend"
+                x:Name="FriendLabel"
+            />
+
+            <Switch
+                IsEnabled="False"
+                Toggled="FriendFamilySwitcherToggled"
+                Grid.Column="1"
+                x:Name="FriendFamilySwitcher"
+            />
+
+            <Label
+                Grid.Column="2"
+                Margin="10,0,0,0"
+                Text="Family"
+                x:Name="FamilyLabel"
+            />
+        </Grid>
+
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="VerticalTextAlignment" Value="Center" />
+                    <Setter Property="Opacity" Value="0.3" />
+                    <Style.Triggers>
+                        <DataTrigger
+                            TargetType="Label"
+                            Binding="{Binding IsToggled, Source={x:Reference AcquaintanceComradeSwitcher}}"
+                            Value="True"
+                        >
+                            <Setter Property="Opacity" Value="1" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+
+            <Label
+                Grid.Column="0"
+                HorizontalTextAlignment="End"
+                Margin="0,0,10,0"
+                Text="Regular"
+                x:Name="RegularLabel"
+            />
+
+            <Switch
+                IsEnabled="False"
+                Toggled="RegularCloseSwitcherToggled"
+                Grid.Column="1"
+                x:Name="RegularCloseSwitcher"
+            />
+
+            <Label
+                Grid.Column="2"
+                Margin="10,0,0,0"
+                Text="Close"
+                x:Name="CloseLabel"
+            />
+        </Grid>
+
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="Label">
+                    <Setter Property="VerticalTextAlignment" Value="Center" />
+                    <Setter Property="Opacity" Value="0.3" />
+                    <Style.Triggers>
+                        <MultiTrigger TargetType="Label">
+                            <MultiTrigger.Conditions>
+                                <BindingCondition
+                                    Binding="{Binding IsToggled, Source={x:Reference RegularCloseSwitcher}}"
+                                    Value="True"
+                                />
+                                <BindingCondition
+                                    Binding="{Binding IsToggled, Source={x:Reference AcquaintanceComradeSwitcher}}"
+                                    Value="True"
+                                />
+                                <BindingCondition
+                                    Binding="{Binding IsToggled, Source={x:Reference FriendFamilySwitcher}}"
+                                    Value="False"
+                                />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Opacity" Value="1" />
+                        </MultiTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+
+            <Label
+                Grid.Column="0"
+                HorizontalTextAlignment="End"
+                Margin="0,0,10,0"
+                Text="Close"
+                x:Name="JustCloseLabel"
+            />
+
+            <Switch
+                IsEnabled="False"
+                Toggled="CloseCrushSwitcherToggled"
+                Grid.Column="1"
+                x:Name="CloseCrushSwitcher"
+            />
+
+            <Label
+                Grid.Column="2"
+                Margin="10,0,0,0"
+                Text="Crush"
+                x:Name="CrushLabel"
+            />
+        </Grid>
+    </StackLayout>
+</ContentPage>

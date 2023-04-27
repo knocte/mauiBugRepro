@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Frontend.WelcomePage"
+    xmlns:app="clr-namespace:Frontend"
+    NavigationPage.HasNavigationBar="False"
+>
+    <StackLayout VerticalOptions="Center">
+        <Label
+            HorizontalTextAlignment="Center"
+            FontSize="30"
+            Text="Before you start"
+        />
+
+        <Label
+            x:Name="InfoText"
+            Margin="20,30"
+            Text="{x:Static app:Texts.WelcomeText}"
+            HorizontalTextAlignment="Center"
+        />
+
+        <Button
+            x:Name="GivePermissionButton"
+            Clicked="GivePermissionButtonClicked"
+            HorizontalOptions="Center"
+            Text="Give permission and start the app"
+        />
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Friendships"
+    NavigationPage.BackButtonTitle="Back"
+    x:Class="Frontend.FriendshipsPage"
+>
+    <CollectionView
+        x:Name="ListOfFriends"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+    >
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Label Text="{Binding .}">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer
+                            CommandParameter="{Binding .}"
+                            Tapped="ListOfFriendsItemSelected"
+                        />
+                    </Label.GestureRecognizers>
+                </Label>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        <CollectionView.EmptyView>
+            <Label
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                Text="No friends added yet"
+            />
+        </CollectionView.EmptyView>
+    </CollectionView>
+</ContentPage>
